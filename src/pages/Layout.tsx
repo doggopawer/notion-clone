@@ -81,7 +81,7 @@ const Layout = () => {
     <Wrapper>
       <Header>
         <HeaderContainer>
-          <Logo>Notable.</Logo>
+          <Logo>notable.</Logo>
           <button onClick={handleToggleThemeMode}>다크/라이트모드</button>
         </HeaderContainer>
       </Header>
