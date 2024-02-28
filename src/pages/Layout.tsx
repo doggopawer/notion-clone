@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { ThemeContext, ThemeContextType } from "../context/themeContext";
+import { ThemeContext, ThemeContextType } from "context/themeContext";
 import styled from "styled-components";
 
 const Wrapper = styled.div`

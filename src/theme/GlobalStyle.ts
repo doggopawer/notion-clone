@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import UrbanistTTF from "../fonts/Urbanist.ttf";
+import UrbanistTTF from "fonts/Urbanist.ttf";
 
 export const GlobalStyle = createGlobalStyle`
 	${reset}
