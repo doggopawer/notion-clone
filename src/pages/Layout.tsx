@@ -14,7 +14,6 @@ const Container = styled.div`
 const Header = styled.div`
   width: 100%;
   height: 77px;
-  background: tomato;
   position: fixed;
   top: 0;
   z-index: 999;
@@ -52,9 +51,17 @@ const FabContainer = styled.div`
   bottom: calc(56px + 30px);
   width: 56px;
 `;
-
+// TODO: 클릭 시 숨겨진 버튼이 나오는 인터랙션 추가
 const FabButton = styled.button`
   position: fixed;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
+  font-size: 24px;
+  cursor: pointer;
+  border: 1px solid ${(props) => props.theme.textColor};
 `;
 
 const Layout = () => {
