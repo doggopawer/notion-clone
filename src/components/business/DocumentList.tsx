@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "api/axios";
 import List from "components/ui/List";
 import { Document } from "types/document";
 
@@ -9,10 +9,7 @@ const DocumentList = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(
-          "https://kdt-frontend.programmers.co.kr/documents",
-          { headers: { "x-username": "doggopawer" } }
-        );
+        const { data } = await axios.get("/documents");
         setDocuments(data);
       } catch (error) {
         console.error(error);
