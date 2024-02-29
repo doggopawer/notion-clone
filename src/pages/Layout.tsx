@@ -26,7 +26,7 @@ const HeaderContainer = styled(Container)`
 `;
 
 const Logo = styled.div`
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.secondary};
   font-size: 24px;
   font-weight: 600;
 `;
@@ -57,11 +57,11 @@ const FabButton = styled.button`
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: ${(props) => props.theme.backgroundColor};
-  color: ${(props) => props.theme.textColor};
+  background-color: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.secondary};
   font-size: 24px;
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme.textColor};
+  border: 1px solid ${(props) => props.theme.secondary};
 `;
 
 const Layout = () => {

@@ -6,14 +6,14 @@ import { Document } from "types/document";
 
 const Wrapper = styled.li`
   position: relative;
-  border: 1.5px solid ${(props) => props.theme.textColor};
-  background: ${(props) => props.theme.backgroundColor};
+  border: 1.5px solid ${(props) => props.theme.secondary};
+  background: ${(props) => props.theme.primary};
   margin-bottom: 24px;
   border-radius: 10px;
 `;
 
 const Anchor = styled(Link)`
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.secondary};
   text-decoration: none;
   width: 100%;
   height: 70px;
@@ -34,8 +34,8 @@ const SlideToDeleteButton = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  color: ${(props) => props.theme.backgroundColor};
-  background: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.primary};
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   display: flex;
   justify-content: center;

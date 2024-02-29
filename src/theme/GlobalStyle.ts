@@ -14,8 +14,8 @@ export const GlobalStyle = createGlobalStyle`
 	}
 	body{
 		font-family: "Urbanist";
-		background: ${(props) => props.theme.backgroundColor};
-        color: ${(props) => props.theme.textColorColor};
+		background: ${(props) => props.theme.primary};
+        color: ${(props) => props.theme.secondary};
 	}
 
 `;
