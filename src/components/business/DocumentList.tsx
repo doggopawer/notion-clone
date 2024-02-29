@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "api/axios";
 import List from "components/ui/List";
 import { Document } from "types/document";
+import { getDocuments } from "api";
 
 const DocumentList = () => {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -9,7 +9,7 @@ const DocumentList = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("/documents");
+        const data = await getDocuments();
         setDocuments(data);
       } catch (error) {
         console.error(error);
