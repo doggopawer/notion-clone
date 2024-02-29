@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import List from "components/ui/List";
 import { Document } from "types/document";
 import { getDocuments } from "api";
+import DocumentItem from "components/business/DocumentItem";
 
 const DocumentList = () => {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -20,7 +21,9 @@ const DocumentList = () => {
   return (
     <List<Document>
       data={documents}
-      render={(document, index) => <div key={index}>{document.title}</div>}
+      render={(document) => (
+        <DocumentItem key={document.id} document={document} />
+      )}
     />
   );
 };

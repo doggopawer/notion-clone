@@ -10,7 +10,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path="/notes">
           <Route index element={<NoteMainPage />} />
-          <Route path="editor" element={<NoteEditorPage />} />
+          <Route path=":id" element={<NoteEditorPage />} />
         </Route>
       </Route>
     </Routes>
