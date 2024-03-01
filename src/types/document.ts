@@ -3,6 +3,7 @@ export type Document = {
   title: string;
   createdAt: Date;
   updatedAt: Date;
+  content?: string;
   documents: Document[];
 };
 
