@@ -1,8 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { faFile, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { Document } from "types/document";
+import Modal from "components/ui/Modal/Modal";
+import Portal from "components/ui/Portal";
+import DeleteDocumentContent from "./DeleteDocumentContent";
 
 const Wrapper = styled.li`
   position: relative;
@@ -62,6 +65,13 @@ const DeleteIcon = () => {
   return <StyledFontAwesomeIcon icon={faTrash} />;
 };
 
+const triggerButtonCSS = css`
+  border: none;
+  cursor: pointer;
+  background: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.primary};
+`;
+
 type DocumentItemProps = {
   document: Document;
 };
@@ -75,7 +85,17 @@ const DocumentItem = ({ document }: DocumentItemProps) => {
       </Anchor>
       {
         <SlideToDeleteButton>
-          <DeleteIcon />
+          <Modal>
+            <Modal.Trigger css={triggerButtonCSS}>
+              <DeleteIcon />
+            </Modal.Trigger>
+            <Portal>
+              <Modal.Content>
+                <DeleteDocumentContent documentId={document.id} />
+              </Modal.Content>
+              <Modal.Backdrop />
+            </Portal>
+          </Modal>
         </SlideToDeleteButton>
       }
     </Wrapper>

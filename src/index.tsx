@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import ThemeProvider from "./context/themeContext";
+import ThemeProvider from "./context/ThemeContext";
 import { GlobalStyle } from "./theme/GlobalStyle";
 
 const root = ReactDOM.createRoot(

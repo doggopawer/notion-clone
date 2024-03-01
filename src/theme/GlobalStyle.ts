@@ -11,8 +11,9 @@ export const GlobalStyle = createGlobalStyle`
 	}
 	* {
 		box-sizing: border-box;
+		font-family: "Urbanist";
 	}
-	body{
+	body {
 		font-family: "Urbanist";
 		background: ${(props) => props.theme.primary};
         color: ${(props) => props.theme.secondary};

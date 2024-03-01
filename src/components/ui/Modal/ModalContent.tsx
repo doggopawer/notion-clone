@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import styled from "styled-components";
-import { ModalContext, ModalContextType } from "context/modalContext";
+import { ModalContext, ModalContextType } from "context/ModalContext";
 
 type ModalContentProps = {
   children: React.ReactNode;

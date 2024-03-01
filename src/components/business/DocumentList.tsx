@@ -3,6 +3,7 @@ import List from "components/ui/List";
 import { Document } from "types/document";
 import { getDocuments } from "api";
 import DocumentItem from "components/business/DocumentItem";
+import DocumentListProvider from "context/DocumentListContext";
 
 const DocumentList = () => {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -19,12 +20,14 @@ const DocumentList = () => {
   }, []);
 
   return (
-    <List<Document>
-      data={documents}
-      render={(document) => (
-        <DocumentItem key={document.id} document={document} />
-      )}
-    />
+    <DocumentListProvider value={{ documents, setDocuments }}>
+      <List<Document>
+        data={documents}
+        render={(document) => (
+          <DocumentItem key={document.id} document={document} />
+        )}
+      />
+    </DocumentListProvider>
   );
 };
 

@@ -1,4 +1,4 @@
-import ModalProvider from "context/modalContext";
+import ModalProvider from "context/ModalContext";
 import ModalTrigger from "./ModalTrigger";
 import ModalBackdrop from "./ModalBackdrop";
 import ModalContent from "./ModalContent";

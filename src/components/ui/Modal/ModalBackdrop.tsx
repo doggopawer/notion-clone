@@ -1,4 +1,4 @@
-import { ModalContextType, ModalContext } from "context/modalContext";
+import { ModalContextType, ModalContext } from "context/ModalContext";
 import React from "react";
 import styled from "styled-components";
 

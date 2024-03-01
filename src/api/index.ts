@@ -14,7 +14,7 @@ export const getDocuments = async () => {
 };
 export const getDocumentById = async (documentId: number) => {
   const { data }: { data: GetDoucmentByIdResponse } = await axios.get(
-    `/documents${documentId}`
+    `/documents/${documentId}`
   );
   return data;
 };
@@ -36,7 +36,7 @@ export const putDocument = async (putDocumentRequest: PutDocumentRequest) => {
 };
 export const deleteDocument = async (documentId: number) => {
   const { data }: { data: DeleteDocumentResponse } = await axios.delete(
-    `/documents${documentId}`
+    `/documents/${documentId}`
   );
   return data;
 };

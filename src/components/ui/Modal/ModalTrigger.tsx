@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { RuleSet } from "styled-components";
 import { useContext } from "react";
-import { ModalContext, ModalContextType } from "context/modalContext";
+import { ModalContext, ModalContextType } from "context/ModalContext";
 
 type ModalTriggerProps = {
   children?: React.ReactNode;
