@@ -1,16 +1,16 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import NoteMainPage from "./pages/notes/NoteMainPage";
-import NoteEditorPage from "./pages/notes/NoteEditorPage";
+import DocumentMainPage from "./pages/notes/DocumentMainPage";
+import DocumentEditorPage from "./pages/notes/DocumentEditorPage";
 import Layout from "./pages/Layout";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/notes">
-          <Route index element={<NoteMainPage />} />
-          <Route path=":id" element={<NoteEditorPage />} />
+        <Route path="/documents">
+          <Route index element={<DocumentMainPage />} />
+          <Route path=":id" element={<DocumentEditorPage />} />
         </Route>
       </Route>
     </Routes>
