@@ -20,7 +20,7 @@ const NoteMainPage = () => {
   }, []);
   return (
     <DocumentProvider value={{ documents, setDocuments }}>
-      <DocumentList />
+      <DocumentList documents={documents} />
     </DocumentProvider>
   );
 };

@@ -1,13 +1,13 @@
-import { useContext } from "react";
 import List from "components/ui/List";
 import { Document } from "types/document";
 
 import DocumentItem from "components/business/DocumentItem";
-import { DocumentContext, DocumentContextType } from "context/DocumentContext";
 
-const DocumentList = () => {
-  const { documents } = useContext(DocumentContext) as DocumentContextType;
+type DocumentListProps = {
+  documents: Document[];
+};
 
+const DocumentList = ({ documents }: DocumentListProps) => {
   return (
     <List<Document>
       data={documents}

@@ -79,7 +79,7 @@ type DocumentItemProps = {
 const DocumentItem = ({ document }: DocumentItemProps) => {
   return (
     <Wrapper>
-      <Anchor to={`${document.id}`}>
+      <Anchor to={`/documents/${document.id}`}>
         <DocumentIcon />
         <Title>{document.title}</Title>
       </Anchor>
