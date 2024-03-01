@@ -1,6 +1,7 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useEffect } from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import { Document } from "types/document";
 
 const Wrapper = styled.div``;
 const Title = styled.div`
@@ -26,9 +27,18 @@ const Content = styled.div`
   }
 `;
 
-const DocumentEditor = () => {
-  const [content, setContent] = useState("");
+type DocumentEditorProps = {
+  document: Document;
+};
+
+const DocumentEditor = ({ document }: DocumentEditorProps) => {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    setTitle(document.title);
+    setContent(document.content as string);
+  }, [setTitle, setContent, document]);
 
   const handleTitleChange: ChangeEventHandler<HTMLDivElement> = (event) => {
     setTitle(event.target.textContent as string);

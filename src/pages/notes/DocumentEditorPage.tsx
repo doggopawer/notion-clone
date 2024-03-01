@@ -25,7 +25,7 @@ const NoteEditorPage = () => {
   }, [id]);
   return (
     <DocumentProvider value={{ documents, setDocuments }}>
-      <DocumentEditor />
+      <DocumentEditor document={document} />
       <DocumentList documents={documents} />
     </DocumentProvider>
   );
