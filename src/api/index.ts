@@ -1,7 +1,6 @@
 import axios from "api/axios";
 import {
   DeleteDocumentResponse,
-  GetDoucmentByIdResponse,
   PostDocumentRequest,
   PostDocumentResponse,
   PutDocumentRequest,
@@ -13,9 +12,7 @@ export const getDocuments = async () => {
   return data;
 };
 export const getDocumentById = async (documentId: number) => {
-  const { data }: { data: GetDoucmentByIdResponse } = await axios.get(
-    `/documents/${documentId}`
-  );
+  const { data } = await axios.get(`/documents/${documentId}`);
   return data;
 };
 export const postDocument = async (
