@@ -1,33 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import List from "components/ui/List";
 import { Document } from "types/document";
-import { getDocuments } from "api";
+
 import DocumentItem from "components/business/DocumentItem";
-import DocumentListProvider from "context/DocumentListContext";
+import { DocumentContext, DocumentContextType } from "context/DocumentContext";
 
 const DocumentList = () => {
-  const [documents, setDocuments] = useState<Document[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await getDocuments();
-        setDocuments(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
+  const { documents } = useContext(DocumentContext) as DocumentContextType;
 
   return (
-    <DocumentListProvider value={{ documents, setDocuments }}>
-      <List<Document>
-        data={documents}
-        render={(document) => (
-          <DocumentItem key={document.id} document={document} />
-        )}
-      />
-    </DocumentListProvider>
+    <List<Document>
+      data={documents}
+      render={(document) => (
+        <DocumentItem key={document.id} document={document} />
+      )}
+    />
   );
 };
 

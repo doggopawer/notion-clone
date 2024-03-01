@@ -4,10 +4,7 @@ import { deleteDocument } from "api";
 import { useContext } from "react";
 import Modal from "components/ui/Modal/Modal";
 import styled, { css } from "styled-components";
-import {
-  DocumentListContext,
-  DocumentListContextType,
-} from "context/DocumentListContext";
+import { DocumentContext, DocumentContextType } from "context/DocumentContext";
 
 const Wrapper = styled.div`
   border-radius: 10px;
@@ -65,8 +62,8 @@ type DeleteDocumentContentProps = {
 
 const DeleteDocumentContent = ({ documentId }: DeleteDocumentContentProps) => {
   const { documents, setDocuments } = useContext(
-    DocumentListContext
-  ) as DocumentListContextType;
+    DocumentContext
+  ) as DocumentContextType;
   const handleDeleteDocument = async (documentId: number) => {
     await deleteDocument(documentId);
     setDocuments(documents.filter((document) => document.id !== documentId));
