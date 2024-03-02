@@ -47,7 +47,16 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
     const contentEl = contentRef.current as HTMLDivElement;
     titleEl.textContent = document.title;
     contentEl.textContent = document.content as string;
-    console.log(titleEl, contentEl);
+    contentEl.focus();
+
+    const selection = window.getSelection();
+    if (selection) {
+      const range = window.document.createRange();
+      range.selectNodeContents(contentEl);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }, [document]);
 
   const debouncedPutDocument = debounce((title: string, content: string) => {
