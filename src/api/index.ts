@@ -24,12 +24,20 @@ export const postDocument = async (
   );
   return data;
 };
-export const putDocument = async (putDocumentRequest: PutDocumentRequest) => {
-  const { data }: { data: PutDocumentResponse } = await axios.put(
-    "/documents",
-    putDocumentRequest
-  );
-  return data;
+export const putDocument = async (
+  documentId: number,
+  putDocumentRequest: PutDocumentRequest
+) => {
+  try {
+    console.log("디바운스호출");
+    const { data }: { data: PutDocumentResponse } = await axios.put(
+      `/documents/${documentId}`,
+      putDocumentRequest
+    );
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
 };
 export const deleteDocument = async (documentId: number) => {
   const { data }: { data: DeleteDocumentResponse } = await axios.delete(
