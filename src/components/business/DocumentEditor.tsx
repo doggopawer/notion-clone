@@ -5,6 +5,7 @@ import { Document } from "types/document";
 import useContentEditablePlaceholder from "hooks/useContentEditablePlaceholder";
 import { putDocument } from "api";
 import debounce from "lodash.debounce"; // lodash에서 debounce 함수 import
+import DocumentHistoryList from "./DocumentHistoryList";
 
 const Wrapper = styled.div``;
 const Title = styled.div`
@@ -81,6 +82,7 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
 
   return (
     <Wrapper>
+      <DocumentHistoryList />
       <Title
         ref={titleRef}
         contentEditable={true}

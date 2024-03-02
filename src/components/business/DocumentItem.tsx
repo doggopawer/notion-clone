@@ -6,6 +6,11 @@ import { Document } from "types/document";
 import Modal from "components/ui/Modal/Modal";
 import Portal from "components/ui/Portal";
 import DeleteDocumentContent from "./DeleteDocumentContent";
+import { useContext } from "react";
+import {
+  DocumentHistoryContext,
+  DocumentHistoryContextType,
+} from "context/DocumentHistoryContext";
 
 const Wrapper = styled.li`
   position: relative;
@@ -77,9 +82,19 @@ type DocumentItemProps = {
 };
 
 const DocumentItem = ({ document }: DocumentItemProps) => {
+  const { id, title } = document;
+  const { documentHistories, setDocumentHistories } = useContext(
+    DocumentHistoryContext
+  ) as DocumentHistoryContextType;
+
+  const handlePushDocumentHistory = () => {
+    console.log("hi");
+    setDocumentHistories([...documentHistories, { id, title }]);
+  };
+
   return (
     <Wrapper>
-      <Anchor to={`/documents/${document.id}`}>
+      <Anchor to={`/documents/${id}`} onClick={handlePushDocumentHistory}>
         <DocumentIcon />
         <Title>{document.title}</Title>
       </Anchor>

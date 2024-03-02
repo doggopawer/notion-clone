@@ -9,6 +9,7 @@ import DocumentList from "components/business/DocumentList";
 const NoteEditorPage = () => {
   const [document, setDocument] = useState<Document>({} as Document);
   const [documents, setDocuments] = useState<Document[]>([]);
+
   const { id } = useParams();
 
   useEffect(() => {
