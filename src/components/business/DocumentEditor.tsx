@@ -1,6 +1,6 @@
-import { ChangeEventHandler, KeyboardEventHandler, useEffect } from "react";
+import { ChangeEventHandler, useEffect } from "react";
 import styled from "styled-components";
-import { useState, useCallback, useRef } from "react";
+import { useRef } from "react";
 import { Document } from "types/document";
 import useContentEditablePlaceholder from "hooks/useContentEditablePlaceholder";
 import { putDocument } from "api";
@@ -36,58 +36,38 @@ type DocumentEditorProps = {
 
 const DocumentEditor = ({ document }: DocumentEditorProps) => {
   const titleRef = useRef<HTMLDivElement | null>(null);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const [handleTitleFocus, handleTitleBlur] =
     useContentEditablePlaceholder("제목이 없습니다");
   const [handleContentFocus, handleContentBlur] =
     useContentEditablePlaceholder("내용이 없습니다");
 
   useEffect(() => {
-    setTitle(document.title);
-    setContent(document.content as string);
-  }, [setTitle, setContent, document]);
+    const titleEl = titleRef.current as HTMLDivElement;
+    const contentEl = contentRef.current as HTMLDivElement;
+    titleEl.textContent = document.title;
+    contentEl.textContent = document.content as string;
+    console.log(titleEl, contentEl);
+  }, [document]);
 
-  // lodash의 debounce 함수를 사용하여 디바운스 적용
-  const debouncedPutDocument = useCallback(
-    debounce((title: string, content: string) => {
-      putDocument(document.id, { title, content });
-    }, 2000), // 500ms 딜레이로 디바운스 적용
-    [document.id]
-  );
+  const debouncedPutDocument = debounce((title: string, content: string) => {
+    putDocument(document.id, { title, content });
+  }, 2000);
 
-  const handleTitleChange: KeyboardEventHandler<HTMLDivElement> = async (e) => {
-    // 변경된 title과 content를 디바운스 적용한 함수에 전달
-    // debouncedPutDocument(e.currentTarget.textContent as string, content);
-    // setTitle(e.currentTarget.textContent as string);
-
-    console.log(e.nativeEvent.isComposing);
-    // const selection = window.getSelection();
-    // if (selection) {
-    //   const range = window.document.createRange();
-    //   range.selectNodeContents(e.currentTarget);
-    //   range.collapse(false); // 커서를 끝으로 이동
-    //   selection.removeAllRanges();
-    //   selection.addRange(range);
-    // }
-
-    debouncedPutDocument(content, e.currentTarget.textContent as string);
+  const handleTitleChange: ChangeEventHandler<HTMLDivElement> = (e) => {
+    const contentEl = contentRef.current as HTMLDivElement;
+    debouncedPutDocument(
+      e.currentTarget.textContent as string,
+      contentEl.textContent as string
+    );
   };
 
   const handleContentChange: ChangeEventHandler<HTMLDivElement> = (e) => {
-    // setContent(e.currentTarget.textContent as string);
-    // 변경된 title과 content를 디바운스 적용한 함수에 전달
-
-    // const selection = window.getSelection();
-    // if (selection) {
-    //   const range = window.document.createRange();
-    //   range.selectNodeContents(e.currentTarget);
-    //   range.collapse(false); // 커서를 끝으로 이동
-    //   selection.removeAllRanges();
-    //   selection.addRange(range);
-    // }
-
-    debouncedPutDocument(title, e.currentTarget.textContent as string);
+    const titleEl = titleRef.current as HTMLDivElement;
+    debouncedPutDocument(
+      titleEl.textContent as string,
+      e.currentTarget.textContent as string
+    );
   };
 
   return (
@@ -95,20 +75,17 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
       <Title
         ref={titleRef}
         contentEditable={true}
-        onKeyDown={handleTitleChange}
+        onInput={handleTitleChange}
         onFocus={handleTitleFocus}
         onBlur={handleTitleBlur}
-      >
-        {title}
-      </Title>
+      ></Title>
       <Content
+        ref={contentRef}
         contentEditable={true}
         onInput={handleContentChange}
         onFocus={handleContentFocus}
         onBlur={handleContentBlur}
-      >
-        {content}
-      </Content>
+      ></Content>
     </Wrapper>
   );
 };
