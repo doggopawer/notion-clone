@@ -4,7 +4,7 @@ type ListProps<T> = {
 };
 
 const List = <T,>({ data, render }: ListProps<T>) => {
-  return <ul>{data.map(render)}</ul>;
+  return <>{data.map(render)}</>;
 };
 
 export default List;
