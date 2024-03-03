@@ -1,34 +1,24 @@
 import DocumentEditor from "components/business/DocumentEditor";
-import DocumentProvider from "context/DocumentContext";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getDocumentById } from "api";
-import { Document } from "types/document";
+
 import DocumentList from "components/business/DocumentList";
 
-const NoteEditorPage = () => {
-  const [document, setDocument] = useState<Document>({} as Document);
-  const [documents, setDocuments] = useState<Document[]>([]);
+import useGetDocumentQuery from "hooks/apis/queries/useGetDocumentQuery";
 
+const DocumentEditorPage = () => {
   const { id } = useParams();
+  const { data, isLoading } = useGetDocumentQuery(parseInt(id as string));
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await getDocumentById(parseInt(id as string));
-        setDocument(data);
-        setDocuments(data.documents);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [id]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <DocumentProvider value={{ documents, setDocuments }}>
-      <DocumentEditor document={document} />
-      <DocumentList documents={documents} />
-    </DocumentProvider>
+    <>
+      <div>hi</div>
+      <DocumentEditor document={data} />
+      <DocumentList documents={data.documents} />
+    </>
   );
 };
-export default NoteEditorPage;
+export default DocumentEditorPage;

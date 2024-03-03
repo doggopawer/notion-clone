@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { useRef } from "react";
 import { Document } from "types/document";
 import useContentEditablePlaceholder from "hooks/useContentEditablePlaceholder";
-import { putDocument } from "api";
 import debounce from "lodash.debounce"; // lodash에서 debounce 함수 import
 import DocumentHistoryList from "./DocumentHistoryList";
+import usePutDocumentMutation from "hooks/apis/mutations/usePutDocumentMutation";
 
 const Wrapper = styled.div``;
 const Title = styled.div`
@@ -36,6 +36,8 @@ type DocumentEditorProps = {
 };
 
 const DocumentEditor = ({ document }: DocumentEditorProps) => {
+  const { mutate } = usePutDocumentMutation(document.id);
+
   const titleRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [handleTitleFocus, handleTitleBlur] =
@@ -61,7 +63,7 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
   }, [document]);
 
   const debouncedPutDocument = debounce((title: string, content: string) => {
-    putDocument(document.id, { title, content });
+    mutate({ title, content });
   }, 2000);
 
   const handleTitleChange: ChangeEventHandler<HTMLDivElement> = (e) => {
@@ -70,6 +72,7 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
       e.currentTarget.textContent as string,
       contentEl.textContent as string
     );
+    // 새로운 documents 를 가져와서 setDocuments 해주기
   };
 
   const handleContentChange: ChangeEventHandler<HTMLDivElement> = (e) => {

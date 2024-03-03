@@ -1,27 +1,16 @@
 import DocumentList from "components/business/DocumentList";
-import DocumentProvider from "context/DocumentContext";
-import { useState, useEffect } from "react";
-import { getDocuments } from "api";
-import { Document } from "types/document";
+import useGetDocumentListQuery from "hooks/apis/queries/useGetDocumentListQuery";
 
-const NoteMainPage = () => {
-  const [documents, setDocuments] = useState<Document[]>([]);
+const DocumentMainPage = () => {
+  const { data, isLoading } = useGetDocumentListQuery();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        // TODO: getDocuments 삭제 후, getDocumentById로 교체하고 useParams로 id 전달하기
-        const data = await getDocuments();
-        setDocuments(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
-    <DocumentProvider value={{ documents, setDocuments }}>
-      <DocumentList documents={documents} />
-    </DocumentProvider>
+    <div>
+      <DocumentList documents={data} />
+    </div>
   );
 };
-export default NoteMainPage;
+export default DocumentMainPage;
