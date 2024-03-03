@@ -15,7 +15,6 @@ const DocumentEditorPage = () => {
 
   return (
     <>
-      <div>hi</div>
       <DocumentEditor document={data} />
       <DocumentList documents={data.documents} />
     </>

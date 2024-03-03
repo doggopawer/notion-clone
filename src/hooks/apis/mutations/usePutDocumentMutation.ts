@@ -8,8 +8,10 @@ const usePutDocumentMutation = (documentId: number) => {
     mutationFn: (putDocumentRequest: PutDocumentRequest) =>
       putDocument(documentId, putDocumentRequest),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["getDocument", documentId] });
-      queryClient.invalidateQueries({ queryKey: ["getDocumentList"] });
+      queryClient.invalidateQueries({
+        queryKey: ["document"],
+        refetchType: "all",
+      });
     },
   });
 };

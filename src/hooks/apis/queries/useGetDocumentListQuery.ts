@@ -3,7 +3,7 @@ import { getDocumentList } from "apis";
 
 const useGetDocumentListQuery = () => {
   return useQuery({
-    queryKey: ["getDocumentList"],
+    queryKey: ["document"],
     queryFn: async () => {
       const data = await getDocumentList();
       return data;

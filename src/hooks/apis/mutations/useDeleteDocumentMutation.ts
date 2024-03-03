@@ -6,8 +6,10 @@ const useDeleteDocumentMutation = (documentId: number) => {
   return useMutation({
     mutationFn: () => deleteDocument(documentId),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["getDocument", documentId] });
-      queryClient.invalidateQueries({ queryKey: ["getDocumentList"] });
+      queryClient.invalidateQueries({
+        queryKey: ["document"],
+        refetchType: "all",
+      });
     },
   });
 };

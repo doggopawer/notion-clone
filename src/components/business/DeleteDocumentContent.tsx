@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "components/ui/Modal/Modal";
 import styled, { css } from "styled-components";
 import useDeleteDocumentMutation from "hooks/apis/mutations/useDeleteDocumentMutation";
+import { ModalContext, ModalContextType } from "context/ModalContext";
+import { useContext } from "react";
 
 const Wrapper = styled.div`
   border-radius: 10px;
@@ -60,9 +62,12 @@ type DeleteDocumentContentProps = {
 
 const DeleteDocumentContent = ({ documentId }: DeleteDocumentContentProps) => {
   const { mutate } = useDeleteDocumentMutation(documentId);
+  console.log("ddc", documentId);
+  const { handleCloseModal } = useContext(ModalContext) as ModalContextType;
 
   const handleDeleteDocument = async () => {
     mutate();
+    handleCloseModal();
   };
 
   return (
