@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import ThemeProvider from "./context/ThemeContext";
 import { GlobalStyle } from "./theme/GlobalStyle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -20,5 +21,6 @@ root.render(
         <App />
       </BrowserRouter>
     </ThemeProvider>
+    <ReactQueryDevtools />
   </QueryClientProvider>
 );
