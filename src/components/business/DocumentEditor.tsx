@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useRef } from "react";
 import { Document } from "types/document";
 import useContentEditablePlaceholder from "hooks/useContentEditablePlaceholder";
-import debounce from "lodash.debounce"; // lodash에서 debounce 함수 import
-import DocumentHistoryList from "./DocumentHistoryList";
+import debounce from "lodash.debounce";
+import DocumentRoutesBreadCrumb from "./DocumentRoutesBreadCrumb";
 import usePutDocumentMutation from "hooks/apis/mutations/usePutDocumentMutation";
 
 const Wrapper = styled.div``;
@@ -85,7 +85,7 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
 
   return (
     <Wrapper>
-      <DocumentHistoryList />
+      <DocumentRoutesBreadCrumb />
       <Title
         ref={titleRef}
         contentEditable={true}

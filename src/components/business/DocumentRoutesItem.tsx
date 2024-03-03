@@ -1,4 +1,4 @@
-import { DocumentHistory } from "context/DocumentHistoryContext";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -16,15 +16,16 @@ const Slash = styled.div`
   margin: 0 7px;
 `;
 
-type DocumentHistoryItemProps = {
-  documentHistory: DocumentHistory;
+type DocumentRoutesItemProps = {
+  documentRoute: any;
 };
 
-const DocumentHistoryItem = ({ documentHistory }: DocumentHistoryItemProps) => {
-  const { id, title } = documentHistory;
+const DocumentRoutesItem = ({ documentRoute }: DocumentRoutesItemProps) => {
+  const { id, title } = documentRoute;
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log(id);
+    navigate(`/documents/${id}`);
   };
 
   return (
@@ -35,4 +36,4 @@ const DocumentHistoryItem = ({ documentHistory }: DocumentHistoryItemProps) => {
   );
 };
 
-export default DocumentHistoryItem;
+export default DocumentRoutesItem;
