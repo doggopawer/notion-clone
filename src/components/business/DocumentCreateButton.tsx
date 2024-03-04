@@ -5,14 +5,13 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Button = styled.button`
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 25%;
+  height: 100%;
+  border: none;
   background-color: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.secondary};
   font-size: 24px;
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme.secondary};
 `;
 const PenIcon = styled(FontAwesomeIcon)`
   font-size: 24px;
