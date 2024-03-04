@@ -2,25 +2,31 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeContext, ThemeContextType } from "context/ThemeContext";
 import styled from "styled-components";
-import FloatingActionButton from "components/ui/FloatingActionButton";
-import DocumentButtonContent from "components/business/DocumentButtonContent";
+
+import DocumentCreateButton from "components/business/DocumentCreateButton";
+import DocumentTreeShowButton from "components/business/DocumentTreeShowButton";
+import PagePrevMoveButton from "components/business/PagePrevMoveButton";
+import PageNextMoveButton from "components/business/PageNextMoveButton";
 
 const Wrapper = styled.div`
   width: 100%;
 `;
-const Container = styled.div`
+
+const Content = styled.div`
   max-width: 640px;
   margin: 0 auto;
   padding: 0 16px;
 `;
-const Header = styled.div`
+const HeaderContainer = styled.div`
   width: 100%;
-  height: 77px;
+  height: 60px;
+
+  background: ${(props) => props.theme.primary};
   position: fixed;
   top: 0;
   z-index: 999;
 `;
-const HeaderContainer = styled(Container)`
+const Header = styled(Content)`
   display: flex;
   height: 100%;
   justify-content: space-between;
@@ -32,38 +38,30 @@ const Logo = styled.div`
   font-size: 24px;
   font-weight: 600;
 `;
-const Content = styled.div`
+const MainContainer = styled.div`
   padding-top: 77px;
   width: 100%;
-  height: 100vh;
 `;
-const ContentContainer = styled(Container)`
-  position: relative;
+const Main = styled(Content)`
   width: 100%;
   height: 100%;
-  overflow: auto;
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera에서 스크롤바 숨기기 */
-  }
 `;
 
-const FabContainer = styled.div`
-  position: absolute;
-  right: 16px;
-  bottom: calc(56px + 30px);
-  width: 56px;
-`;
-// TODO: 클릭 시 숨겨진 버튼이 나오는 인터랙션 추가
-const FabButton = styled.button`
+const FooterContainer = styled.div`
+  width: 100%;
+  height: 60px;
   position: fixed;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: ${(props) => props.theme.primary};
-  color: ${(props) => props.theme.secondary};
-  font-size: 24px;
-  cursor: pointer;
-  border: 1px solid ${(props) => props.theme.secondary};
+  background: ${(props) => props.theme.primary};
+  border-top: 1px solid ${(props) => props.theme.secondary};
+  bottom: 0px;
+  z-index: 999;
+`;
+
+const Footer = styled(Content)`
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Layout = () => {
@@ -81,20 +79,25 @@ const Layout = () => {
 
   return (
     <Wrapper>
-      <Header>
-        <HeaderContainer>
+      <HeaderContainer>
+        <Header>
           <Logo>notable.</Logo>
           <button onClick={handleToggleThemeMode}>다크/라이트모드</button>
-        </HeaderContainer>
-      </Header>
-      <Content>
-        <ContentContainer>
+        </Header>
+      </HeaderContainer>
+      <MainContainer>
+        <Main>
           <Outlet />
-          <FloatingActionButton>
-            <DocumentButtonContent />
-          </FloatingActionButton>
-        </ContentContainer>
-      </Content>
+        </Main>
+      </MainContainer>
+      <FooterContainer>
+        <Footer>
+          <PagePrevMoveButton />
+          <DocumentCreateButton />
+          <DocumentTreeShowButton />
+          <PageNextMoveButton />
+        </Footer>
+      </FooterContainer>
     </Wrapper>
   );
 };
