@@ -1,16 +1,16 @@
 import List from "components/ui/List";
-import DocumentRoutesItem from "./DocumentRoutesItem";
 import styled from "styled-components";
 import useGetDocumentListQuery from "hooks/apis/queries/useGetDocumentListQuery";
 import { Document } from "types/document";
 import { useParams } from "react-router-dom";
+import DocumentBreadCrumbItem from "./DocumentBreadCrumbItem";
 
 const Wrapper = styled.ul`
   width: 50%;
   display: flex;
 `;
 
-const DocumentRoutesBreadCrumb = () => {
+const DocumentBreadCrumb = () => {
   const { data } = useGetDocumentListQuery();
   const { id } = useParams();
 
@@ -54,11 +54,11 @@ const DocumentRoutesBreadCrumb = () => {
       <List<Document>
         data={documentRoutes}
         render={(documentRoute) => (
-          <DocumentRoutesItem documentRoute={documentRoute} />
+          <DocumentBreadCrumbItem documentRoute={documentRoute} />
         )}
       />
     </Wrapper>
   );
 };
 
-export default DocumentRoutesBreadCrumb;
+export default DocumentBreadCrumb;

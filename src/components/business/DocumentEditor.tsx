@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Document } from "types/document";
 import useContentEditablePlaceholder from "hooks/useContentEditablePlaceholder";
 import debounce from "lodash.debounce";
-import DocumentRoutesBreadCrumb from "./DocumentRoutesBreadCrumb";
+import DocumentBreadCrumb from "./DocumentBreadCrumb";
 import usePutDocumentMutation from "hooks/apis/mutations/usePutDocumentMutation";
 
 const Wrapper = styled.div``;
@@ -72,7 +72,6 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
       e.currentTarget.textContent as string,
       contentEl.textContent as string
     );
-    // 새로운 documents 를 가져와서 setDocuments 해주기
   };
 
   const handleContentChange: ChangeEventHandler<HTMLDivElement> = (e) => {
@@ -85,7 +84,7 @@ const DocumentEditor = ({ document }: DocumentEditorProps) => {
 
   return (
     <Wrapper>
-      <DocumentRoutesBreadCrumb />
+      <DocumentBreadCrumb />
       <Title
         ref={titleRef}
         contentEditable={true}

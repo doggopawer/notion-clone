@@ -6,21 +6,23 @@ const Wrapper = styled.div`
   font-size: 11px;
   font-weight: 500;
   margin-bottom: 20px;
-  white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
+  white-space: nowrap;
 `;
-const BreadcrumbItem = styled.div`
-  text-overflow: ellipsis; /* 넘친 텍스트 생략 기호(...)로 대체 */
-  cursor: pointer; /* 클릭 가능한 커서 스타일 */
+const Text = styled.div`
+  text-overflow: ellipsis;
+  cursor: pointer;
 `;
 const Slash = styled.div`
   margin: 0 7px;
 `;
 
-type DocumentRoutesItemProps = {
+type DocumentBreadCrumbItemProps = {
   documentRoute: any;
 };
 
-const DocumentRoutesItem = ({ documentRoute }: DocumentRoutesItemProps) => {
+const DocumentBreadCrumbItem = ({
+  documentRoute,
+}: DocumentBreadCrumbItemProps) => {
   const { id, title } = documentRoute;
   const navigate = useNavigate();
 
@@ -30,10 +32,10 @@ const DocumentRoutesItem = ({ documentRoute }: DocumentRoutesItemProps) => {
 
   return (
     <Wrapper>
-      <BreadcrumbItem onClick={handleClick}>{title}</BreadcrumbItem>
+      <Text onClick={handleClick}>{title}</Text>
       <Slash>/</Slash>
     </Wrapper>
   );
 };
 
-export default DocumentRoutesItem;
+export default DocumentBreadCrumbItem;
