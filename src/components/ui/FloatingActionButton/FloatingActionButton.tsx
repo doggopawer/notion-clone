@@ -39,7 +39,7 @@ const Content = styled.div`
   z-index: 0;
   &.active {
     opacity: 1;
-    transform: translateY(-56px);
+    transform: translateY(-10px);
   }
 `;
 
@@ -55,10 +55,10 @@ const FloatingActionButton = ({ children }: FloatingActionButtonProps) => {
 
   return (
     <Wrapper>
+      <Content className={isOpen ? "active" : ""}>{children}</Content>
       <FabButton className={isOpen ? "active" : ""} onClick={handleToggleModal}>
         <PlusIcon icon={faPlus} />
       </FabButton>
-      <Content className={isOpen ? "active" : ""}>{children}</Content>
     </Wrapper>
   );
 };
