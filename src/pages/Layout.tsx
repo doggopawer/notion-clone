@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeContext, ThemeContextType } from "context/ThemeContext";
 import styled from "styled-components";
-import FloatingActionButton from "components/ui/FloatingActionButton/FloatingActionButton";
+import FloatingActionButton from "components/ui/FloatingActionButton";
 import DocumentButtonContent from "components/business/DocumentButtonContent";
 
 const Wrapper = styled.div`
