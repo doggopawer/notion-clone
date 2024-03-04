@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeContext, ThemeContextType } from "context/ThemeContext";
 import styled from "styled-components";
+import FloatingActionButton from "components/ui/FloatingActionButton/FloatingActionButton";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -88,9 +89,7 @@ const Layout = () => {
       <Content>
         <ContentContainer>
           <Outlet />
-          <FabContainer>
-            <FabButton>+</FabButton>
-          </FabContainer>
+          <FloatingActionButton>히든 콘텐트</FloatingActionButton>
         </ContentContainer>
       </Content>
     </Wrapper>
