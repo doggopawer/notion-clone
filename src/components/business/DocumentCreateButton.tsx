@@ -1,6 +1,7 @@
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import usePostDocumentMutation from "hooks/apis/mutations/usePostDocumentMutation";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -18,9 +19,15 @@ const PenIcon = styled(FontAwesomeIcon)`
 `;
 
 const DocumentCreateButton = () => {
+  const { mutate } = usePostDocumentMutation();
+  const { id } = useParams();
+
+  const handleCreateDocument = () => {
+    mutate({ title: "새노트", parent: id ? parseInt(id) : null });
+  };
   return (
     <Button>
-      <PenIcon icon={faPen} />
+      <PenIcon onClick={handleCreateDocument} icon={faPen} />
     </Button>
   );
 };
