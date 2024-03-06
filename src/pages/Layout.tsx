@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { ThemeContext, ThemeContextType } from "context/ThemeContext";
 import styled from "styled-components";
 import FloatingActionButton from "components/ui/FloatingActionButton";
 import DocumentTree from "components/business/DocumentTree";
@@ -11,6 +10,7 @@ import {
   DeleteModeContextType,
 } from "context/DeleteModeContext";
 import DocumentDeleteButton from "components/business/DocumentDeleteButton";
+import DarkModeButton from "components/business/DarkModeButton";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -76,20 +76,9 @@ const Footer = styled(Content)`
   align-items: center;
 `;
 const Layout = () => {
-  const { themeMode, setThemeMode } = useContext(
-    ThemeContext
-  ) as ThemeContextType;
   const { isDeleteMode } = useContext(
     DeleteModeContext
   ) as DeleteModeContextType;
-
-  const handleToggleThemeMode = () => {
-    if (themeMode === "light") {
-      setThemeMode("dark");
-    } else {
-      setThemeMode("light");
-    }
-  };
 
   return (
     <Wrapper>
@@ -99,7 +88,7 @@ const Layout = () => {
           <ButtonContainer>
             <DocumentCreateButton />
             <DocumentDeleteModeButton />
-            <button onClick={handleToggleThemeMode}>다크/라이트모드</button>
+            <DarkModeButton />
           </ButtonContainer>
         </Header>
       </HeaderContainer>
