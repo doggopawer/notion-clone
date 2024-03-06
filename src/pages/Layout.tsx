@@ -10,6 +10,7 @@ import {
   DeleteModeContext,
   DeleteModeContextType,
 } from "context/DeleteModeContext";
+import DocumentDeleteButton from "components/business/DocumentDeleteButton";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -110,7 +111,9 @@ const Layout = () => {
         </Main>
       </MainContainer>
       <FooterContainer isDeleteMode={isDeleteMode}>
-        <Footer>delete</Footer>
+        <Footer>
+          <DocumentDeleteButton />
+        </Footer>
       </FooterContainer>
     </Wrapper>
   );
