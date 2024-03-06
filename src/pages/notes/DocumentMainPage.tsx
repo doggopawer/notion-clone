@@ -1,4 +1,5 @@
 import DocumentList from "components/business/DocumentList";
+import IntroBox from "components/business/IntroBox";
 import ContentHeader from "components/ui/ContentHeader";
 
 import useGetDocumentListQuery from "hooks/apis/queries/useGetDocumentListQuery";
@@ -11,6 +12,7 @@ const DocumentMainPage = () => {
   }
   return (
     <div>
+      <IntroBox />
       <ContentHeader title={"Notes"}>
         <DocumentList documents={data} />
       </ContentHeader>
