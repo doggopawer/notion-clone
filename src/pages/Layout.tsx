@@ -6,6 +6,10 @@ import FloatingActionButton from "components/ui/FloatingActionButton";
 import DocumentTree from "components/business/DocumentTree";
 import DocumentCreateButton from "components/business/DocumentCreateButton";
 import DocumentDeleteModeButton from "components/business/DocumentDeleteModeButton";
+import {
+  DeleteModeContext,
+  DeleteModeContextType,
+} from "context/DeleteModeContext";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -50,10 +54,32 @@ const Main = styled(Content)`
   height: 100%;
 `;
 
+type FooterContainerProps = {
+  isDeleteMode: boolean;
+};
+
+const FooterContainer = styled.div<FooterContainerProps>`
+  width: 100%;
+  height: 60px;
+  background: ${(props) => props.theme.primary};
+  border-top: 1px solid ${(props) => props.theme.secondary};
+  position: fixed;
+  bottom: ${(props) => (props.isDeleteMode ? "0" : "-60px")};
+  z-index: 999;
+`;
+const Footer = styled(Content)`
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
 const Layout = () => {
   const { themeMode, setThemeMode } = useContext(
     ThemeContext
   ) as ThemeContextType;
+  const { isDeleteMode } = useContext(
+    DeleteModeContext
+  ) as DeleteModeContextType;
 
   const handleToggleThemeMode = () => {
     if (themeMode === "light") {
@@ -83,6 +109,9 @@ const Layout = () => {
           </FloatingActionButton>
         </Main>
       </MainContainer>
+      <FooterContainer isDeleteMode={isDeleteMode}>
+        <Footer>delete</Footer>
+      </FooterContainer>
     </Wrapper>
   );
 };
