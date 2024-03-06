@@ -18,9 +18,18 @@ const DeleteModeProvider = ({ children }: DeleteModeProviderProps) => {
   const [deleteIdList, setDeleteIdList] = useState<number[]>([]);
 
   const handleToggleIsDeleteMode = () => {
-    setIsDeleteMode(!isDeleteMode);
+    if (!isDeleteMode) {
+      setIsDeleteMode(true);
+      return;
+    }
+    setIsDeleteMode(false);
+    setDeleteIdList([]);
   };
   const handlePushDeleteId = (deleteId: number) => {
+    if (deleteIdList.includes(deleteId)) {
+      setDeleteIdList([...deleteIdList.filter((id) => id !== deleteId)]);
+      return;
+    }
     setDeleteIdList([...deleteIdList, deleteId]);
   };
 
