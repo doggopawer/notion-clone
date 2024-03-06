@@ -9,7 +9,6 @@ import ContentHeader from "components/ui/ContentHeader";
 const Wrapper = styled.div`
   border: 2px solid ${(props) => props.theme.secondary};
   background: ${(props) => props.theme.primary};
-  /* border-radius: 20px; */
   padding: 20px;
   position: absolute;
   right: 0px;
@@ -20,59 +19,77 @@ const TreeContainer = styled.div`
   width: 260px;
   height: 240px;
   overflow: scroll;
-  scrollbar-width: none; /* Firefox에 대한 스크롤바 숨김 */
+  scrollbar-width: none;
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera에 대한 스크롤바 숨김 */
+    display: none;
   }
 `;
 
 const TreeNode = styled.li`
-  list-style-type: none; /* 목록 기호 제거 */
+  list-style-type: none;
   padding: 10px 0;
 `;
 
 const TreeNodeTitle = styled.span`
   font-size: 16px;
-  font-weight: 400; /* 노드 제목 강조 */
-  cursor: pointer; /* 마우스 오버 시 포인터 커서로 변경 */
+  font-weight: 400;
+  cursor: pointer;
 `;
 
 const TreeNodeList = styled.ul`
-  margin-left: 20px; /* 하위 노드를 위한 들여쓰기 */
+  margin-left: 20px;
 `;
 
 const ToggleIcon = styled.span`
-  margin-right: 5px; /* 아이콘과 제목 사이 간격 조정 */
+  margin-right: 5px;
+  cursor: pointer;
+`;
+
+const NoSubDocumentsText = styled.div`
+  font-size: 14px;
+  margin-top: 5px;
 `;
 
 const DocumentTree = () => {
   const { data, isLoading } = useGetDocumentListQuery();
 
   const [expandedNodes, setExpandedNodes] = useState<number[]>([]);
+  const [clickedIcon, setClickedIcon] = useState<number | null>(null);
 
   const toggleNode = (id: number) => {
-    if (expandedNodes.includes(id)) {
-      setExpandedNodes(expandedNodes.filter((nodeId) => nodeId !== id));
+    if (clickedIcon === id) {
+      setClickedIcon(null);
     } else {
-      setExpandedNodes([...expandedNodes, id]);
+      setClickedIcon(id);
+      setExpandedNodes((prevNodes) =>
+        prevNodes.includes(id)
+          ? prevNodes.filter((nodeId) => nodeId !== id)
+          : [...prevNodes, id]
+      );
     }
   };
 
   const renderTreeNode = (node: Document) => {
     const isExpanded = expandedNodes.includes(node.id);
+    const isLeafNode = !node.documents || node.documents.length === 0;
 
     return (
       <TreeNode key={node.id}>
-        <TreeNodeTitle onClick={() => toggleNode(node.id)}>
-          <ToggleIcon>
-            <FontAwesomeIcon icon={isExpanded ? faCaretDown : faCaretRight} />
-          </ToggleIcon>
+        <TreeNodeTitle
+          onClick={() => (window.location.href = `/documents/${node.id}`)}
+        >
           {node.title}
         </TreeNodeTitle>
-        {isExpanded && node.documents && (
+        <ToggleIcon onClick={() => toggleNode(node.id)}>
+          <FontAwesomeIcon icon={isExpanded ? faCaretDown : faCaretRight} />
+        </ToggleIcon>
+        {isExpanded && !isLeafNode && node.documents && (
           <TreeNodeList>
             {node.documents.map((childNode) => renderTreeNode(childNode))}
           </TreeNodeList>
+        )}
+        {isLeafNode && isExpanded && (
+          <NoSubDocumentsText>하위 문서가 없습니다.</NoSubDocumentsText>
         )}
       </TreeNode>
     );
