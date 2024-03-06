@@ -1,3 +1,4 @@
+import useDeleteDocumentListMutation from "hooks/apis/mutations/useDeleteDocumentListMutation";
 import { createContext, useState, ReactNode } from "react";
 
 export type DeleteModeContextType = {
@@ -5,6 +6,7 @@ export type DeleteModeContextType = {
   handleToggleIsDeleteMode: () => void;
   deleteIdList: number[];
   handlePushDeleteId: (id: number) => void;
+  handleDeleteDocumentList: (deleteIdList: number[]) => void;
 };
 
 export const DeleteModeContext = createContext<DeleteModeContextType | {}>({});
@@ -16,6 +18,7 @@ type DeleteModeProviderProps = {
 const DeleteModeProvider = ({ children }: DeleteModeProviderProps) => {
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [deleteIdList, setDeleteIdList] = useState<number[]>([]);
+  const { mutate } = useDeleteDocumentListMutation();
 
   const handleToggleIsDeleteMode = () => {
     if (!isDeleteMode) {
@@ -33,6 +36,11 @@ const DeleteModeProvider = ({ children }: DeleteModeProviderProps) => {
     setDeleteIdList([...deleteIdList, deleteId]);
   };
 
+  const handleDeleteDocumentList = (deleteIdList: number[]) => {
+    mutate(deleteIdList);
+    setDeleteIdList([]);
+  };
+
   return (
     <DeleteModeContext.Provider
       value={{
@@ -40,6 +48,7 @@ const DeleteModeProvider = ({ children }: DeleteModeProviderProps) => {
         handleToggleIsDeleteMode,
         deleteIdList,
         handlePushDeleteId,
+        handleDeleteDocumentList,
       }}
     >
       {children}
