@@ -1,6 +1,4 @@
-import Modal from "components/ui/Modal/Modal";
-import Portal from "components/ui/Portal";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -25,37 +23,40 @@ const Description = styled.div`
   font-weight: 500;
   margin-bottom: 24px;
 `;
-const buttonCSS = css`
+const Button = styled.button`
   width: 120px;
   height: 36px;
   border: 1.5px solid ${(props) => props.theme.secondary};
   background-color: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.secondary};
   border-radius: 24px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
 `;
 
 const IntroBox = () => {
+  const handleMoveToEmail = () => {
+    const emailAddress = "doggopawer@gmail.com";
+    const subject = "요구사항 건의";
+    const body = "Notable의 개선사항이나 바뀌었으면 하는 점을 적어주세요!";
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+  };
+
   return (
     <Wrapper>
       <div>
-        <Title>Notable에 오신것을 환영합니다!</Title>
+        <Title>Welcome To Notable!</Title>
         <Description>
           Notable에서 자유롭게 노트를 만들고, 수정하고, 삭제해보세요.
         </Description>
       </div>
 
-      <Modal>
-        <Modal.Trigger css={buttonCSS}>Notable 배우기</Modal.Trigger>
-        <Portal>
-          <Modal.Content>
-            <Modal.Close>끄기</Modal.Close>
-          </Modal.Content>
-          <Modal.Backdrop />
-        </Portal>
-      </Modal>
+      <Button onClick={handleMoveToEmail}>문의하기</Button>
     </Wrapper>
   );
 };
