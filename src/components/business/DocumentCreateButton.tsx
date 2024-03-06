@@ -4,9 +4,7 @@ import usePostDocumentMutation from "hooks/apis/mutations/usePostDocumentMutatio
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = styled.button`
-  width: 25%;
-  height: 100%;
+const Wrapper = styled.button`
   border: none;
   background-color: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.secondary};
@@ -25,9 +23,9 @@ const DocumentCreateButton = () => {
     mutate({ title: "새노트", parent: id ? parseInt(id) : null });
   };
   return (
-    <Button>
+    <Wrapper>
       <PenIcon onClick={handleCreateDocument} icon={faPen} />
-    </Button>
+    </Wrapper>
   );
 };
 
