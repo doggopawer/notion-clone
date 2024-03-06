@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DocumentList from "components/business/DocumentList";
 
 import useGetDocumentQuery from "hooks/apis/queries/useGetDocumentQuery";
+import ContentHeader from "components/ui/ContentHeader";
 
 const DocumentEditorPage = () => {
   const { id } = useParams();
@@ -16,7 +17,9 @@ const DocumentEditorPage = () => {
   return (
     <>
       <DocumentEditor document={data} />
-      <DocumentList documents={data.documents} />
+      <ContentHeader title={"Sub Notes"}>
+        <DocumentList documents={data.documents} />
+      </ContentHeader>
     </>
   );
 };

@@ -35,6 +35,7 @@ const PlusIcon = styled(FontAwesomeIcon)`
 `;
 
 const Content = styled.div`
+  /* padding: 12px; */
   transition: all 0.3s ease-in-out;
   opacity: 0;
   transform: translateY(0);

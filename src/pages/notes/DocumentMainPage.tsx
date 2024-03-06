@@ -1,5 +1,6 @@
 import DocumentList from "components/business/DocumentList";
-import DocumentTree from "components/business/DocumentTree";
+import ContentHeader from "components/ui/ContentHeader";
+
 import useGetDocumentListQuery from "hooks/apis/queries/useGetDocumentListQuery";
 
 const DocumentMainPage = () => {
@@ -10,7 +11,9 @@ const DocumentMainPage = () => {
   }
   return (
     <div>
-      <DocumentList documents={data} />
+      <ContentHeader title={"Notes"}>
+        <DocumentList documents={data} />
+      </ContentHeader>
     </div>
   );
 };

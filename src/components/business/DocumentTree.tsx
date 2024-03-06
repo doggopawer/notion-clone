@@ -4,17 +4,21 @@ import { Document } from "types/document";
 import styled from "styled-components";
 import { faCaretDown, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ContentHeader from "components/ui/ContentHeader";
+
+const Wrapper = styled.div`
+  border: 2px solid ${(props) => props.theme.secondary};
+  background: ${(props) => props.theme.primary};
+  /* border-radius: 20px; */
+  padding: 20px;
+  position: absolute;
+  right: 0px;
+  bottom: calc(56px + 10px);
+`;
 
 const TreeContainer = styled.div`
   width: 260px;
   height: 240px;
-  padding: 12px;
-  border: 2px solid ${(props) => props.theme.secondary};
-  background: ${(props) => props.theme.primary};
-  border-radius: 20px;
-  position: absolute;
-  right: 0px;
-  bottom: calc(56px + 10px);
   overflow: scroll;
   scrollbar-width: none; /* Firefox에 대한 스크롤바 숨김 */
   &::-webkit-scrollbar {
@@ -80,9 +84,13 @@ const DocumentTree = () => {
     }
 
     return (
-      <TreeContainer>
-        <ul>{data.map((node) => renderTreeNode(node))}</ul>
-      </TreeContainer>
+      <Wrapper>
+        <ContentHeader title="Note Tree">
+          <TreeContainer>
+            <ul>{data.map((node) => renderTreeNode(node))}</ul>
+          </TreeContainer>
+        </ContentHeader>
+      </Wrapper>
     );
   };
 
