@@ -4,6 +4,8 @@ import { ThemeContext, ThemeContextType } from "context/ThemeContext";
 import styled from "styled-components";
 import FloatingActionButton from "components/ui/FloatingActionButton";
 import DocumentTree from "components/business/DocumentTree";
+import DocumentCreateButton from "components/business/DocumentCreateButton";
+import DocumentDeleteModeButton from "components/business/DocumentDeleteModeButton";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,6 +30,10 @@ const Header = styled(Content)`
   height: 100%;
   justify-content: space-between;
   align-items: center;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 16px;
 `;
 
 const Logo = styled.div`
@@ -62,7 +68,11 @@ const Layout = () => {
       <HeaderContainer>
         <Header>
           <Logo>notable.</Logo>
-          <button onClick={handleToggleThemeMode}>다크/라이트모드</button>
+          <ButtonContainer>
+            <DocumentCreateButton />
+            <DocumentDeleteModeButton />
+            <button onClick={handleToggleThemeMode}>다크/라이트모드</button>
+          </ButtonContainer>
         </Header>
       </HeaderContainer>
       <MainContainer>
