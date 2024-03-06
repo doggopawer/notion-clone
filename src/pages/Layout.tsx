@@ -47,7 +47,7 @@ const Logo = styled.div`
   font-weight: 600;
 `;
 const MainContainer = styled.div`
-  padding-top: 77px;
+  padding: 60px 0;
   width: 100%;
 `;
 const Main = styled(Content)`
