@@ -17,14 +17,27 @@ const Wrapper = styled.button`
 const TrashIcon = styled(FontAwesomeIcon)`
   font-size: 24px;
 `;
+const Dot = styled.div`
+  width: 20px;
+  height: 2px;
+  border-radius: 50%;
+  background: ${(props) => props.theme.secondary};
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+`;
 
 const DocumentDeleteModeButton = () => {
-  const { handleToggleIsDeleteMode } = useContext(
+  const { isDeleteMode, handleToggleIsDeleteMode } = useContext(
     DeleteModeContext
   ) as DeleteModeContextType;
   return (
     <Wrapper onClick={handleToggleIsDeleteMode}>
       <TrashIcon icon={faTrash} />
+      <Dot className={isDeleteMode ? "active" : ""} />
     </Wrapper>
   );
 };
