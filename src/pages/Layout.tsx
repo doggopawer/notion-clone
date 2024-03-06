@@ -55,18 +55,19 @@ const Main = styled(Content)`
   height: 100%;
 `;
 
-type FooterContainerProps = {
-  isDeleteMode: boolean;
-};
-
-const FooterContainer = styled.div<FooterContainerProps>`
+const FooterContainer = styled.div`
   width: 100%;
   height: 60px;
   background: ${(props) => props.theme.primary};
   border-top: 1px solid ${(props) => props.theme.secondary};
   position: fixed;
-  bottom: ${(props) => (props.isDeleteMode ? "0" : "-60px")};
+  bottom: -60px;
   z-index: 999;
+  transition: bottom 0.3s ease-in-out;
+
+  &.active {
+    bottom: 0px;
+  }
 `;
 const Footer = styled(Content)`
   display: flex;
@@ -110,7 +111,7 @@ const Layout = () => {
           </FloatingActionButton>
         </Main>
       </MainContainer>
-      <FooterContainer isDeleteMode={isDeleteMode}>
+      <FooterContainer className={isDeleteMode ? "active" : ""}>
         <Footer>
           <DocumentDeleteButton />
         </Footer>
