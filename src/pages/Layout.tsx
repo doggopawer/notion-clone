@@ -29,7 +29,7 @@ const HeaderContainer = styled.div`
   background: ${(props) => props.theme.primary};
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 99;
 `;
 const Header = styled(Content)`
   display: flex;
