@@ -1,10 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteDocument } from "apis";
 
-const useDeleteDocumentMutation = (documentId: number) => {
+const useDeleteDocumentListMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => deleteDocument(documentId),
+    mutationFn: async (documentIds: number[]) => {
+      const deleteRequests = documentIds.map((id) => deleteDocument(id));
+      await Promise.all(deleteRequests);
+    },
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: ["document"],
@@ -14,4 +17,4 @@ const useDeleteDocumentMutation = (documentId: number) => {
   });
 };
 
-export default useDeleteDocumentMutation;
+export default useDeleteDocumentListMutation;
