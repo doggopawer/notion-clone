@@ -2,11 +2,8 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeContext, ThemeContextType } from "context/ThemeContext";
 import styled from "styled-components";
-
-import DocumentCreateButton from "components/business/DocumentCreateButton";
-import DocumentTreeShowButton from "components/business/DocumentTreeShowButton";
-import PagePrevMoveButton from "components/business/PagePrevMoveButton";
-import PageNextMoveButton from "components/business/PageNextMoveButton";
+import FloatingActionButton from "components/ui/FloatingActionButton";
+import DocumentTree from "components/business/DocumentTree";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -47,23 +44,6 @@ const Main = styled(Content)`
   height: 100%;
 `;
 
-const FooterContainer = styled.div`
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  background: ${(props) => props.theme.primary};
-  border-top: 1px solid ${(props) => props.theme.secondary};
-  bottom: 0px;
-  z-index: 999;
-`;
-
-const Footer = styled(Content)`
-  display: flex;
-  height: 100%;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const Layout = () => {
   const { themeMode, setThemeMode } = useContext(
     ThemeContext
@@ -88,16 +68,11 @@ const Layout = () => {
       <MainContainer>
         <Main>
           <Outlet />
+          <FloatingActionButton>
+            <DocumentTree />
+          </FloatingActionButton>
         </Main>
       </MainContainer>
-      <FooterContainer>
-        <Footer>
-          <PagePrevMoveButton />
-          <DocumentCreateButton />
-          <DocumentTreeShowButton />
-          <PageNextMoveButton />
-        </Footer>
-      </FooterContainer>
     </Wrapper>
   );
 };

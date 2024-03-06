@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: absolute;
-  right: 16px;
-  bottom: calc(56px + 30px);
-  width: 56px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 500px;
 `;
 const FabButton = styled.button`
-  position: fixed;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
