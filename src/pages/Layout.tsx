@@ -49,7 +49,8 @@ const Logo = styled(Link)`
   font-weight: 600;
 `;
 const MainContainer = styled.div`
-  padding: 60px 0;
+  padding-top: 60px;
+  padding-bottom: 76px;
   width: 100%;
 `;
 const Main = styled(Content)`
@@ -59,11 +60,11 @@ const Main = styled(Content)`
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 60px;
+  height: 76px;
   background: ${(props) => props.theme.primary};
   border-top: 1px solid ${(props) => props.theme.secondary};
   position: fixed;
-  bottom: -60px;
+  bottom: -76px;
   z-index: 999;
   transition: bottom 0.3s ease-in-out;
 
