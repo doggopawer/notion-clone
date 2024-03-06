@@ -1,6 +1,10 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import {
+  DeleteModeContext,
+  DeleteModeContextType,
+} from "context/DeleteModeContext";
+import { useContext } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.button`
@@ -15,8 +19,11 @@ const TrashIcon = styled(FontAwesomeIcon)`
 `;
 
 const DocumentDeleteModeButton = () => {
+  const { handleToggleIsDeleteMode } = useContext(
+    DeleteModeContext
+  ) as DeleteModeContextType;
   return (
-    <Wrapper>
+    <Wrapper onClick={handleToggleIsDeleteMode}>
       <TrashIcon icon={faTrash} />
     </Wrapper>
   );
