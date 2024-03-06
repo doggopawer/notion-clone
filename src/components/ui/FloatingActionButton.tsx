@@ -23,7 +23,7 @@ const FabButton = styled.button`
   border: 1px solid ${(props) => props.theme.secondary};
   z-index: 999;
 
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   transform: rotate(0deg);
   &.active {
     transform: rotate(45deg);
@@ -35,8 +35,7 @@ const PlusIcon = styled(FontAwesomeIcon)`
 `;
 
 const Content = styled.div`
-  /* padding: 12px; */
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   opacity: 0;
   transform: translateY(0);
   z-index: 0;

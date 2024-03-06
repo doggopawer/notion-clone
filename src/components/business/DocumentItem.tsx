@@ -22,7 +22,7 @@ const Wrapper = styled.li`
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   transform: rotateX(0);
   &.active {
     transform: rotateX(360deg);

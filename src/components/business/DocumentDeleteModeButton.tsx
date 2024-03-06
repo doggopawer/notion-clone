@@ -22,7 +22,7 @@ const Dot = styled.div`
   height: 2px;
   border-radius: 50%;
   background: ${(props) => props.theme.secondary};
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   opacity: 0;
 
   &.active {
