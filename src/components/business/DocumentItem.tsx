@@ -12,7 +12,6 @@ const Wrapper = styled.li`
   border: 1.5px solid ${(props) => props.theme.secondary};
   background: ${(props) => props.theme.primary};
   margin-bottom: 24px;
-  border-radius: 10px;
 `;
 
 const Anchor = styled(Link)`
