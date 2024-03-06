@@ -11,8 +11,12 @@ const Wrapper = styled.ul`
 `;
 
 const DocumentBreadCrumb = () => {
-  const { data } = useGetDocumentListQuery();
+  const { data, isLoading } = useGetDocumentListQuery();
   const { id } = useParams();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   function dfs(
     node: Document,
