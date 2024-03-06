@@ -11,6 +11,7 @@ import {
 } from "context/DeleteModeContext";
 import DocumentDeleteButton from "components/business/DocumentDeleteButton";
 import DarkModeButton from "components/business/DarkModeButton";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -41,8 +42,9 @@ const ButtonContainer = styled.div`
   gap: 16px;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   color: ${(props) => props.theme.secondary};
+  text-decoration: none;
   font-size: 24px;
   font-weight: 600;
 `;
@@ -84,7 +86,7 @@ const Layout = () => {
     <Wrapper>
       <HeaderContainer>
         <Header>
-          <Logo>notable.</Logo>
+          <Logo to={"documents/"}>notable.</Logo>
           <ButtonContainer>
             <DocumentCreateButton />
             <DocumentDeleteModeButton />
